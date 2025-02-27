@@ -32,10 +32,19 @@
   :config
   (vertico-mode))
 
+;; Richer annotations in the minibuffer
+
 (use-package marginalia
   :after vertico
   :config
   (marginalia-mode))
+
+;; Persist history over Emacs restart
+
+(use-package savehist
+  :ensure nil
+  :config
+  (add-hook 'emacs-startup-hook #'savehist-mode))
 
 (provide 'init-minibuffer)
 
