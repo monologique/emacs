@@ -1,8 +1,16 @@
-;;; init-meow.el --- Summary -*- lexical-binding:t -*-
+;;; init-keybindings.el --- Summary -*- lexical-binding:t -*-
 
 ;;; Commentary:
 
 ;;; Code:
+
+;; Keyboard shortcut discoverability
+
+(use-package which-key
+  :config
+  (which-key-mode))
+
+;; Another modal editing on Emacs
 
 (use-package meow
   :init
@@ -89,20 +97,10 @@
      '("<escape>" . ignore)))
   :config
   (meow-setup)
-  (meow-global-mode 1)
-  (setq display-line-numbers-type 'relative)
+  (meow-global-mode 1))
 
-  ;; Automatic line-number-width
-  (add-hook 'prog-mode-hook
-            (lambda ()
-              (setq display-line-numbers-width
-                    (max 3 (length (number-to-string (line-number-at-pos (point-max))))))))
-  ;;(add-hook 'prog-mode-hook 'display-line-numbers-mode)
-  )
-
-
-(provide 'init-meow)
-;;; init-meow.el ends here
+(provide 'init-keybindings)
+;;; init-keybindings.el ends here
 
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved)
