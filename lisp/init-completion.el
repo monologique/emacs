@@ -1,4 +1,4 @@
-;;; init-corfu.el --- Summary -*- lexical-binding:t -*-
+;;; init-completion.el --- Summary -*- lexical-binding:t -*-
 
 ;;; Commentary:
 
@@ -22,12 +22,14 @@
   :config
   (global-corfu-mode))
 
+;; Provides Completion At Point Extensions which can be used in combination
 
 (use-package cape
   :after corfu
   :config
   (add-hook 'completion-at-point-functions #'cape-dabbrev))
 
+;; Emacs completion style that matches multiple regexps in any order
 
 (use-package orderless
   :after corfu
@@ -41,8 +43,8 @@
   ;; Customizes the completion behavior for specific categories
   (setq completion-category-overrides '((file (styles basic)))))
 
-(provide 'init-corfu)
-;;; init-corfu.el ends here
+(provide 'init-completion)
+;;; init-completion.el ends here
 
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved)

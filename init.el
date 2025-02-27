@@ -5,22 +5,13 @@
 ;;; Code:
 
 ;; Loading the theme first
-(require 'init-fontaine)
-(require 'init-icons)
-(require 'init-theme)
-
+(require 'init-theming)
 ;; Key functionality
 (require 'init-general)
 (require 'init-which-key)
-
-;; Editing and movement
 (require 'init-meow)
 (require 'init-editing)
-
-;; Completions
-(require 'init-corfu)
-
-;; Minibuffer
+(require 'init-completion)
 (require 'init-minibuffer)
 
 ;; Note-taking
