@@ -39,6 +39,7 @@
 (require 'init-format-all)
 (require 'init-yaml)
 (require 'init-nix)
+(require 'init-markdown)
 
 ;; Remote
 (require 'init-remote)
