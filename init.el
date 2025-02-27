@@ -34,13 +34,14 @@
 ;; Completions
 (require 'init-corfu)
 
+;; Minibuffer
+(require 'init-vertico)
 
 ;; Org
 (require 'init-org)
 (require 'init-denote)
 
 ;; Misc
-(require 'init-ultra-scroll)
 (require 'init-uniquify)
 
 (custom-set-variables
