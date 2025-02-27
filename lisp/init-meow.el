@@ -97,9 +97,9 @@
             (lambda ()
               (setq display-line-numbers-width
                     (max 3 (length (number-to-string (line-number-at-pos (point-max))))))))
+  ;;(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+  )
 
-
-  (add-hook 'prog-mode-hook 'display-line-numbers-mode))
 
 (provide 'init-meow)
 ;;; init-meow.el ends here

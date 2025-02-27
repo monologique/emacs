@@ -25,6 +25,9 @@
 (setq auto-fill-mode nil)
 (setq fill-column 80)
 
+;; Custom file
+(setq custom-file (concat user-emacs-directory "custom.el"))
+
 ;; Minimal UI
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
