@@ -21,7 +21,7 @@
 (require 'init-corfu)
 
 ;; Minibuffer
-(require 'init-vertico)
+(require 'init-minibuffer)
 
 ;; Note-taking
 (require 'init-denote)
