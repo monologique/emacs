@@ -34,10 +34,19 @@
   :config
   (fontaine-mode 1))
 
+
 ;; A utility package to collect various Icon Fonts
 
 (use-package all-the-icons
   :if (display-graphic-p))
+
+
+;; Increase the spacing of frames and windows.
+
+(use-package spacious-padding
+  :config
+  (spacious-padding-mode))
+
 
 ;; Highly accessible themes for GNU Emacs
 
@@ -100,6 +109,7 @@
 
   (when (memq window-system '(mac ns))
     (add-hook 'ns-system-appearance-change-functions #'my/apply-theme)))
+
 
 (provide 'init-theming)
 ;;; init-theming.el ends here
