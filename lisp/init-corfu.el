@@ -19,6 +19,10 @@
   ;; useful beyond Corfu.
   (setq read-extended-command-predicate #'command-completion-default-include-p))
 
+(use-package cape
+  :after corfu
+  :config
+  (add-hook 'completion-at-point-functions #'cape-dabbrev))
 
 (use-package orderless
   :after corfu
@@ -32,7 +36,5 @@
   ;; Customizes the completion behavior for specific categories
   (setq completion-category-overrides '((file (styles basic org-without-partial-completion)))))
 
-(use-package cape
-  :after corfu)
 
 (provide 'init-corfu)
