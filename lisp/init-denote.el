@@ -15,6 +15,10 @@
   :config
   (add-hook 'dired-mode-hook #'denote-dired-mode))
 
+(use-package spacious-padding
+  :config
+  (spacious-padding-mode 1))
+
 (provide 'init-denote)
 ;;; init-denote.el ends here
 
