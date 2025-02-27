@@ -1,10 +1,11 @@
+;;; init-corfu.el --- Summary -*- lexical-binding:t -*-
+
+;;; Commentary:
+
+;;; Code:
+
 (use-package corfu
   :ensure t
-  :config
-  (global-corfu-mode))
-
-(use-package emacs
-  :ensure nil
   :init
   ;; Enable indentation+completion using the TAB key.
   ;; `completion-at-point' is often bound to M-TAB.
@@ -17,12 +18,16 @@
   ;; Hide commands in M-x which do not apply to the current mode.  Corfu
   ;; commands are hidden, since they are not used via M-x. This setting is
   ;; useful beyond Corfu.
-  (setq read-extended-command-predicate #'command-completion-default-include-p))
+  (setq read-extended-command-predicate #'command-completion-default-include-p)
+  :config
+  (global-corfu-mode))
+
 
 (use-package cape
   :after corfu
   :config
   (add-hook 'completion-at-point-functions #'cape-dabbrev))
+
 
 (use-package orderless
   :after corfu
@@ -34,7 +39,11 @@
   (setq completion-category-defaults nil)
 
   ;; Customizes the completion behavior for specific categories
-  (setq completion-category-overrides '((file (styles basic org-without-partial-completion)))))
-
+  (setq completion-category-overrides '((file (styles basic)))))
 
 (provide 'init-corfu)
+;;; init-corfu.el ends here
+
+;; Local Variables:
+;; byte-compile-warnings: (not free-vars unresolved)
+;; End:

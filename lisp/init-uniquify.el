@@ -1,3 +1,9 @@
+;;; init-uniquify.el --- Summary -*- lexical-binding:t -*-
+
+;;; Code:
+
+;;; Commentary:
+
 (use-package uniquify
   :ensure nil
   :init
@@ -7,3 +13,4 @@
 	uniquify-ignore-buffers-re "^\\*"))
 
 (provide 'init-uniquify)
+;;; init-uniquify.el ends here

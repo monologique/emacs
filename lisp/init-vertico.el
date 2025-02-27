@@ -1,3 +1,9 @@
+;;; init-vertico.el --- Summary -*- lexical-binding:t -*-
+
+;;; Code:
+
+;;; Commentary:
+
 (use-package vertico
   :init
   ;; Support opening new minibuffers from inside existing minibuffers.
@@ -22,7 +28,6 @@
   (setq minibuffer-prompt-properties
         '(read-only t cursor-intangible t face minibuffer-prompt))
   (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
-  (setq enable-recursive-minibuffers t)
   :config
   (vertico-mode))
 
@@ -32,3 +37,8 @@
   (marginalia-mode))
 
 (provide 'init-vertico)
+;;; init-vertico.el ends here
+
+;; Local Variables:
+;; byte-compile-warnings: (not free-vars unresolved)
+;; End:

@@ -1,3 +1,9 @@
+;;; init-fontaine.el --- Summary -*- lexical-binding:t -*-
+
+;;; Commentary:
+
+;;; Code:
+
 (use-package fontaine
   :init
   (setq fontaine-latest-state-file
@@ -5,19 +11,21 @@
 
   (setq fontaine-presets
 	'((regular
-	   :default-family "Iosevka Comfy"
+	   :default-family "Aporetic Sans Mono"
 	   :default-weight thin
 	   :default-height 160
 
+	   ;; :variable-pitch-family "CMU Serif"
 	   :variable-pitch-family "SF Pro"
-	   ;; :variable-pitch-weight normal
+	   :variable-pitch-weight light
+	   ;; :variable-pitch-height 1.1
 
-	   :fixed-pitch-family "Iosevka Comfy"
+	   :fixed-pitch-family "Aporetic Sans Mono"
 
-	   :mode-line-active-family "SF Pro"
+	   :mode-line-active-family "Helvetica"
 	   :mode-line-active-height 0.95
 
-	   :mode-line-inactive-family "SF Pro"
+	   :mode-line-inactive-family "Helvetica"
 	   :mode-line-inactive-height 0.95
 	   )))
 
@@ -26,3 +34,8 @@
   (fontaine-mode 1))
 
 (provide 'init-fontaine)
+;;; init-fontaine.el ends here
+
+;; Local Variables:
+;; byte-compile-warnings: (not free-vars unresolved)
+;; End:
