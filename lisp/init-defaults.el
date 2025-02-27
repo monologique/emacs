@@ -21,6 +21,7 @@
   (setq confirm-nonexistent-file-or-buffer nil)
 
   (setq auto-fill-mode nil)
+  (setq fill-column 80)
 
   ;; Minimal UI
   (tool-bar-mode -1)

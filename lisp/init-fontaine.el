@@ -9,15 +9,16 @@
 	   :default-weight thin
 	   :default-height 160
 
-	   :variable-pitch-family "CMU Serif Extra"
-	   :variable-pitch-weight normal
-	   :variable-pitch-height 1.1
+	   :variable-pitch-family "SF Pro"
+	   ;; :variable-pitch-weight normal
+
+	   :fixed-pitch-family "Iosevka Comfy"
 
 	   :mode-line-active-family "SF Pro"
-	   :mode-line-active-height 0.9
+	   :mode-line-active-height 0.95
 
 	   :mode-line-inactive-family "SF Pro"
-	   :mode-line-inactive-height 0.9
+	   :mode-line-inactive-height 0.95
 	   )))
 
   (fontaine-set-preset (or (fontaine-restore-latest-preset) 'regular))

@@ -19,11 +19,20 @@
   ;; useful beyond Corfu.
   (setq read-extended-command-predicate #'command-completion-default-include-p))
 
+
 (use-package orderless
-  :ensure t
+  :after corfu
   :init
+  ;; Sets the completion styles to use
   (setq completion-styles '(orderless basic))
+
+  ;; Disables the default category completion styles.
   (setq completion-category-defaults nil)
-  (setq completion-category-ovverides '((file (styles partial-completion)))))
+
+  ;; Customizes the completion behavior for specific categories
+  (setq completion-category-overrides '((file (styles basic org-without-partial-completion)))))
+
+(use-package cape
+  :after corfu)
 
 (provide 'init-corfu)

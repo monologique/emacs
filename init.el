@@ -1,9 +1,18 @@
-
+;;; init.el
 (defvar my/org-path "~/Documents/Org"
   "Directory for Org.")
 
 (defvar my/notes-path "~/Documents/Org/roam"
   "Directory of my notes using Org roam.")
+
+(defvar my/font-default-family "Iosevka Comfy"
+  "Just my default font.")
+
+(defvar my/font-variable-pitch-family "Iosevka Comfy"
+  "Just my default font.")
+
+(defconst my/font-sans-family "SF Pro"
+  "Just my default font.")
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
 
@@ -15,7 +24,6 @@
 (require 'init-layouts)
 (require 'init-modus-themes)
 (require 'init-fontaine)
-(require 'init-ns-auto-titlebar)
 
 ;; Key functionality
 (require 'init-evil)
@@ -26,9 +34,10 @@
 ;; Completions
 (require 'init-corfu)
 
+
 ;; Org
 (require 'init-org)
-(require 'init-org-modern)
+(require 'init-denote)
 
 ;; Misc
 (require 'init-ultra-scroll)
@@ -46,3 +55,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;;; init.el ends here
