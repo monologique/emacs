@@ -71,6 +71,7 @@
  read-buffer-completion-ignore-case t
  ;; TODO: set a helper for bytes read-process-output-max
  recenter-positions '(top middle bottom)
+ ring-bell-function #'ignore
  regexp-search-ring-max 200
  save-interprogram-paste-before-kill t
  ;; TODO : save-some-buffers-default-predicate

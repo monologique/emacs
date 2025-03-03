@@ -58,10 +58,6 @@
   (fontaine-set-preset (or (fontaine-restore-latest-preset) 'regular))
   (:hook-into emacs-startup))
 
-(setup (:elpaca meow)
-  (require '+meow)
-  (:option meow-cheatsheet-layout meow-cheatsheet-layout-qwerty))
-
 (setup (:elpaca cape)
   (:load-after corfu)
   (:require cape)
@@ -80,12 +76,17 @@
   (:with-mode minibuffer-mode)
   (marginalia-mode 1))
 
+(setup (:elpaca meow)
+  (require '+meow)
+  (:option meow-cheatsheet-layout meow-cheatsheet-layout-qwerty))
+
 (setup (:elpaca orderless)
   (:load-after corfu vertico)
   (:require orderless)
   (:option completion-styles '(orderless basic)
 	   completion-category-defaults nil
 	   completion-category-overrides '((file (styles basic)))))
+
 (setup (:elpaca modus-themes)
   (:require modus-themes +modus-themes)
   (:option modus-themes-itatlic-constructs t
@@ -97,6 +98,10 @@
   (:load-after modus-themes)
   (:require spacious-padding)
   (add-hook 'modus-themes-post-load-hook #'spacious-padding-mode))
+
+(setup (:elpaca nix-ts-mode :host github :repo "nix-community/nix-ts-mode" :branch "trunk")
+  (if (treesit-language-available-p 'nix)
+      (push '("\\.nix\\'" . nix-ts-mode) auto-mode-alist)))
 
 (setup (:elpaca ultra-scroll :repo "https://github.com/jdtsmith/ultra-scroll")
   ;; From the wiki
