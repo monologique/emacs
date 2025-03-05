@@ -2,7 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'early-init (locate-user-emacs-file "early-init.el"))
+;; (require 'early-init (locate-user-emacs-file "early-init.el"))
+(require 'no-littering)
 
 (setq-default
  apropos-do-all t
@@ -195,13 +196,12 @@
 (when (require 'desktop nil :noerror)
   (setq-default desktop-path (list .etc)
                 desktop-auto-save-timeout 600)
-  (desktop-save-mode +1))
+  (add-hook 'window-setup-hook #'desktop-save-mode))
 
 (when (require 'autorevert nil :noerror)
   (setq-default global-auto-revert-non-file-buffers t
                 auto-revert-verbose nil)
   (global-auto-revert-mode +1))
 
-;;; General settings
 (provide '+emacs)
 ;;; +emacs.el ends here

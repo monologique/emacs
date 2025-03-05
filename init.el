@@ -4,7 +4,7 @@
 
 (setup (:require +emacs))
 
-(setup (:elpaca exec-path-from-shell)
+(setup (:package exec-path-from-shell)
   (require 'exec-path-from-shell)
   (dolist (var '("SSH_AUTH_SOCK"
                  "SSH_AGENT_PID"
@@ -15,6 +15,12 @@
                  "NIX_PATH"))
     (add-to-list 'exec-path-from-shell-variables var))
   (exec-path-from-shell-initialize))
+
+;;; Keybindings
+
+(setup (:package meow)
+  (require '+meow)
+  (:option meow-cheatsheet-layout meow-cheatsheet-layout-qwerty))
 
 ;;; Frame and faces settings
 
@@ -33,8 +39,8 @@
   (add-hook 'emacs-startup-hook #'+frame-center-2/3)
   (add-hook 'window-setup-hook #'raise-frame))
 
-(setup (:elpaca fontaine)
-  (:require fontaine)
+(setup (:package fontaine)
+  (require 'fontaine)
   (:option fontaine-latest-state-file
 	   (locate-user-emacs-file "fontaine-latest-state.eld"))
   (:option fontaine-presets
@@ -59,38 +65,46 @@
   (fontaine-set-preset (or (fontaine-restore-latest-preset) 'regular))
   (:hook-into emacs-startup))
 
-(setup (:elpaca modus-themes)
+(setup (:package modus-themes)
   (:require modus-themes +modus-themes)
   (:option modus-themes-itatlic-constructs t
 	   modus-themes-bold-constructs nil)
   (when (memq window-system '(mac ns))
     (add-hook 'ns-system-appearance-change-functions #'+modus-themes-toggle)))
 
-(setup (:elpaca spacious-padding)
+(setup (:package spacious-padding)
   (:load-after modus-themes)
-  (:require spacious-padding)
+  (require 'spacious-padding)
   (add-hook 'modus-themes-post-load-hook #'spacious-padding-mode))
 
-(setup (:elpaca ultra-scroll :host github :repo "jdtsmith/ultra-scroll" :branch "main")
-  ;; From the wiki
+(setup (:package-vc (ultra-scroll :fetcher github :repo "jdtsmith/ultra-scroll"))
   (:option scroll-conservatively 101
 	   scroll-margin 0)
   (:hook-into window-setup))
 
-;;; Keybindings
 
-(setup (:elpaca meow)
-  (require '+meow)
-  (:option meow-cheatsheet-layout meow-cheatsheet-layout-qwerty))
+(setup (:package dashboard page-break-lines)
+  (:require dashboard)
+  ;; dashboard setup
+  (:with-mode package-after-init
+    (:hook dashboard-insert-startupify-lists)
+    (:hook dashboard-initialize))
+  (dashboard-setup-startup-hook)
+  ;; page-break-lines setup
+  (:require page-break-lines)
+  (:with-mode dashboard-mode-hook
+    (:hook page-break-lines-mode)))
+
+;; (setup (:package all-the-icons nerd-icons))
 
 ;;; Completions
 
-(setup (:elpaca cape)
+(setup (:package cape)
   (:load-after corfu)
   (:require cape)
   (add-hook 'completion-at-point-functions #'cape-dabbrev))
 
-(setup (:elpaca corfu)
+(setup (:package corfu)
   (:require corfu +corfu)
   (:option tab-always-indent 'complete
 	   text-mode-ispell-word-completion nil
@@ -99,17 +113,17 @@
 
 ;;; Minibuffer
 
-(setup (:elpaca vertico)
+(setup (:package vertico)
   (:require vertico)
   (:hook-into emacs-startup-hook))
 
-(setup (:elpaca marginalia)
+(setup (:package marginalia)
   (:load-after vertico)
   (:require marginalia)
   (:with-mode minibuffer-mode)
   (marginalia-mode 1))
 
-(setup (:elpaca orderless)
+(setup (:package orderless)
   (:load-after corfu vertico)
   (:require orderless)
   (:option completion-styles '(orderless basic)
@@ -117,11 +131,14 @@
 	   completion-category-overrides '((file (styles basic)))))
 
 ;;; Languages, diagnostics and formatting
-;;; TODO:
-;;; - Write documentation for Emacs 30+ using treesitter
-;;; - Eglot
+;; TODO:
+;; - Write documentation for Emacs 30+ using treesitter
+;; - Eglot
 
-(setup (:elpaca format-all)
+(setup (:package envrc)
+  (:hook envrc-global-mode))
+
+(setup (:package format-all)
   (:require format-all))
 ;; C
 (setup
@@ -154,7 +171,7 @@
         (add-to-list 'major-mode-remap-alist '(python-mode . python-ts-mode))))
 
 ;; Nix
-(setup (:elpaca nix-ts-mode :host github :repo "nix-community/nix-ts-mode" :branch "trunk")
+(setup (:package nix-ts-mode)
   (if (treesit-language-available-p 'nix)
       (add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-ts-mode))))
 
