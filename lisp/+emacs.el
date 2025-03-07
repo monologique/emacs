@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-;; (require 'early-init (locate-user-emacs-file "early-init.el"))
+(require 'early-init (locate-user-emacs-file "early-init.el"))
 (require 'no-littering)
 
 (setq-default
@@ -68,6 +68,7 @@
  mouse-yank-at-point t
  native-comp-async-report-warnings-errors 'silent
  ;;native-comp-deferred-compilation nil
+ project-vc-ignores '("elpa")
  read-answer-short t
  read-buffer-completion-ignore-case t
  ;; TODO: set a helper for bytes read-process-output-max

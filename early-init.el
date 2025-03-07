@@ -48,54 +48,22 @@ See `no-littering' for examples.")
 
 ;;; Packages
 
-(require 'package)
-
-(add-to-list 'package-archives 
-             '("melpa" . "https://melpa.org/packages/") t)
-
-(if (not (and (package-installed-p 'no-littering)
-              (package-installed-p 'setup)))
-    (progn
-      (package-refresh-contents)
-      (package'install 'no-littering)
-      (package-install 'setup))
-  (package-initialize))
-
 (dolist (pkg '(no-littering
+               exec-path-from-shell
                setup))
-  (if (package-installed-p pkg)
-      (require pkg)))
+  (require pkg))
 
-;; Setup macros
+;;; Use shell path
 
-(setup-define :package-vc
-  (lambda (package)
-    (unless (and (package-installed-p (car-safe package))
-                 (assoc (car-safe package) (package--alist)))
-      (let* ((name (car-safe package))
-             (recipe (cdr-safe package))
-             (fetcher (plist-get recipe :fetcher))
-             (repo (plist-get recipe :repo))
-             (branch (plist-get recipe :branch))
-             (url (if (plist-member recipe :url)
-                      (plist-get recipe :url)
-                    (format "https://www.%s.com/%s" fetcher repo)))
-             (spec `(,name :url ,url
-                           ,@(if branch `(:branch ,branch)))))
-        (package-vc-install spec))))
-  :documentation "Install a VC package from source.
-PACKAGE should be a cons-cell of the form (NAME :fetcher FETCHER :repo REPO [:branch BRANCH])."
-  :repeatable t
-  :shorthand (lambda (form)
-               (if (consp (cadr form)) (caadr form) (cadr form))))
-
-(setup-define :load-after
-    (lambda (&rest features)
-      (let ((body `(require ',(setup-get 'feature))))
-        (dolist (feature (nreverse features))
-          (setq body `(with-eval-after-load ',feature ,body)))
-        body))
-    :documentation "Load the current feature after FEATURES.")
+(dolist (var '("SSH_AUTH_SOCK"
+               "SSH_AGENT_PID"
+               "GPG_AGENT_INFO"
+               "LANG"
+               "LC_TYPE"
+               "NIX_SSL_CERT_FILE"
+               "NIX_PATH"))
+  (add-to-list 'exec-path-from-shell-variables var))
+(exec-path-from-shell-initialize)
 
 (provide 'early-init)
 ;;; early-init.el ends here
