@@ -99,35 +99,46 @@
 	read-extended-command-predicate #'command-completion-default-include-p)
   (add-hook 'emacs-startup-hook #'global-corfu-mode))
 
-;;; Minibuffer
+;;; Buffer and minibuffer
 
 (setup (:require vertico)
-  (add-hook 'after-init-hook #'vertico-mode))  
+  (add-hook 'after-init-hook #'vertico-mode))
 
 (setup (:require marginalia)
   (with-eval-after-load 'vertico
-    (add-hook 'vertico-mode-hook #'marginalia-mode)
-    (marginalia-mode 1)))
+    (add-hook 'vertico-mode-hook #'marginalia-mode)))
 
 (setup (:require orderless)
   (setq completion-styles '(orderless basic)
         completion-category-defaults nil
 	completion-category-overrides '((file (styles basic)))))
 
-;; ;; ;;; Languages, diagnostics and formatting
-;; ;; ;; TODO:
-;; ;; ;; - Write documentation for Emacs 30+ using treesitter
-;; ;; ;; - Eglot
+(setup (:require helpful)
+  (:global "C-h f" #'helpful-callable
+           "C-h v" #'helpful-variable
+           "C-h k" #'helpful-key
+           "C-h x" #'helpful-command))
+
+;;; Note-taking
+
+(setup (:require denote)
+  (setq denote-directory (expand-file-name "Documents/Notes" (getenv "HOME"))))
+
+;;; Languages, diagnostics and formatting
+;; TODO:
+;; - Write documentation for Emacs 30+ using treesitter
+;; - Eglot
 
 (setup (:require envrc)
   (:hook envrc-global-mode))
 
 (setup (:require format-all)
   (add-hook 'prog-mode-hook #'format-all-mode))
-;; ;; ;; C
-;; ;; (setup
-;; ;;     (if (treesit-language-available-p 'c)
-;; ;;         (add-to-list 'major-mode-remap-alist '(c-mode . c-ts-mode))))
+
+;; ;; C
+;; (setup
+;;     (if (treesit-language-available-p 'c)
+;;         (add-to-list 'major-mode-remap-alist '(c-mode . c-ts-mode))))
 
 ;; ;; ;; CSS
 ;; ;; (setup
