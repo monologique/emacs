@@ -3,7 +3,7 @@
 ;;; Code:
 
 (setup (:require +emacs)
-  ;; macOS-specifics settings   
+  ;; macOS-specifics settings
   (setq mac-option-key-is-meta nil
         mac-command-key-is-meta t
         mac-command-modifier 'meta
@@ -12,17 +12,23 @@
 ;;; Keybindings
 (setup (:require meow +meow)
   (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
-  
+
   (+meow-setup)
-  
+
   (add-hook 'after-init-hook #'meow-global-mode))
-  
+
+(setup (:require which-key)
+  (setq which-key-max-description-length 40
+        which-key-sort-order 'which-key-description-order)
+  (add-hook 'meow-global-mode-hook #'which-key-mode))
+
 ;;; Frame and faces settings
+
 (setup (:require +frame)
   ;; Set up frame appearance at startup
   (add-hook 'emacs-startup-hook #'+frame-center-2/3)
   (add-hook 'window-setup-hook #'raise-frame)
-  
+
   ;; No title bar on macOS
   (when (eq system-type 'darwin)
     (setq ns-use-native-fullscreen t)
@@ -80,8 +86,8 @@
 
 (setup (:require ultra-scroll)
   (setq scroll-conservatively 101
-	  scroll-margin 0)
-    
+	scroll-margin 0)
+
   (add-hook 'after-init-hook #'ultra-scroll-mode))
 
 ;;; Completions
