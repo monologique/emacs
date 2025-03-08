@@ -41,16 +41,14 @@
 (setup (:require modus-themes +modus-themes)
   (setq modus-themes-italic-constructs nil
         modus-themes-bold-constructs nil
-        modus-themes-custom-auto-reload t
-        modus-themes-mixed-fonts nil
-        modus-themes-variable-pitch-ui nil)
-  
+        modus-themes-custom-auto-reload t)
+
   (when (memq window-system '(mac ns))
     (add-hook 'ns-system-appearance-change-functions #'+modus-themes-toggle))
   ;; TODO: Make sure about emacsclient -c
   (when (eq system-type 'darwin)
     (add-hook 'ns-system-appearance-change-functions #'+modus-themes-toggle))
-  
+
   (when (eq system-type 'darwin)
     (if (daemonp)
         (add-hook 'after-make-frame-functions
@@ -63,22 +61,22 @@
 
 (setup (:require fontaine)
   (setq fontaine-presets
-         '((regular
-	    :default-family "Iosevka Fixed SS14"
-	    :default-weight normal
-	    :default-height 160
-	    :fixed-pitch-family "Iosevka Fixed SS14"
-	    :fixed-pitch-weight nil
-            :fixed-pitch-height 1.0
-	    :variable-pitch-family "Times New Roman"
-	    :variable-pitch-weight nil
-            :variable-pitch-height 1.2
-            :mode-line-active-family "Helvetica"
-            :mode-line-active-width nil
-            :mode-line-active-height 0.8
-            :mode-line-inactive-family "Helvetica"
-            :mode-line-inactive-width nil
-            :mode-line-inactive-height 0.8)))
+        '((regular
+	   :default-family "Iosevka Fixed SS14"
+	   :default-weight normal
+	   :default-height 160
+	   :fixed-pitch-family "Iosevka Fixed SS14"
+	   :fixed-pitch-weight nil
+           :fixed-pitch-height 1.0
+	   :variable-pitch-family "Times New Roman"
+	   :variable-pitch-weight nil
+           :variable-pitch-height 1.2
+           :mode-line-active-family "Helvetica"
+           :mode-line-active-width nil
+           :mode-line-active-height 0.8
+           :mode-line-inactive-family "Helvetica"
+           :mode-line-inactive-width nil
+           :mode-line-inactive-height 0.8)))
   ;; Using spacious-padding-mode-hook because this package reset
   ;; mode-line face family
   (fontaine-set-preset 'regular)
