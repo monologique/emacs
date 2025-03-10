@@ -165,10 +165,10 @@
 ;; ;;     (if (treesit-language-available-p 'python)
 ;; ;;         (add-to-list 'major-mode-remap-alist '(python-mode . python-ts-mode))))
 
-;; ;; ;; Nix
-;; ;; (setup (:package nix-ts-mode)
-;; ;;   (if (treesit-language-available-p 'nix)
-;; ;;       (add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-ts-mode))))
+;; Nix
+(setup (:package nix-ts-mode)
+  (if (treesit-language-available-p 'nix)
+      (add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-ts-mode))))
 
 ;; ;; ;; Typescript
 ;; ;; (setup
