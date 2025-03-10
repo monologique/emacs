@@ -57,7 +57,7 @@
       (+modus-themes-toggle ns-system-appearance))))
 
 (setup (:require spacious-padding)
-  (add-hook 'enable-theme-functions #'spacious-padding-mode))
+  (add-hook 'after-init-hook #'spacious-padding-mode))
 
 (setup (:require fontaine)
   (setq fontaine-presets
@@ -73,14 +73,14 @@
            :variable-pitch-height 1.2
            :mode-line-active-family "Helvetica"
            :mode-line-active-width nil
-           :mode-line-active-height 0.8
+           :mode-line-active-height 0.9
            :mode-line-inactive-family "Helvetica"
            :mode-line-inactive-width nil
-           :mode-line-inactive-height 0.8)))
+           :mode-line-inactive-height 0.9)))
   ;; Using spacious-padding-mode-hook because this package reset
   ;; mode-line face family
   (fontaine-set-preset 'regular)
-  (add-hook 'spacious-padding-mode-hook #'fontaine-apply-current-preset))
+  (add-hook 'enable-theme-functions #'fontaine-apply-current-preset))
 
 (setup (:require ultra-scroll)
   (setq scroll-conservatively 101
