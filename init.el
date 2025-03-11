@@ -43,24 +43,15 @@
         modus-themes-bold-constructs nil
         modus-themes-custom-auto-reload t)
 
-  (when (memq window-system '(mac ns))
-    (add-hook 'ns-system-appearance-change-functions #'+modus-themes-toggle))
-  ;; TODO: Make sure about emacsclient -c
   (when (eq system-type 'darwin)
-    (add-hook 'ns-system-appearance-change-functions #'+modus-themes-toggle))
-
-  (when (eq system-type 'darwin)
-    (if (daemonp)
-        (add-hook 'after-make-frame-functions
-                  '(lambda (frame)
-                     (+modus-themes-toggle ns-system-appearance)))
-      (+modus-themes-toggle ns-system-appearance))))
+    (add-hook 'ns-system-appearance-change-functions #'+modus-themes-toggle)))
 
 (setup (:require spacious-padding)
   (add-hook 'after-init-hook #'spacious-padding-mode))
 
 (setup (:require fontaine)
-  (setq fontaine-presets
+  (setq fontaine-latest-state-file (.etc "fontaine-latest-state-file.eld")
+        fontaine-presets
         '((regular
 	   :default-family "Iosevka Fixed SS14"
 	   :default-weight normal
@@ -77,10 +68,8 @@
            :mode-line-inactive-family "Helvetica"
            :mode-line-inactive-width nil
            :mode-line-inactive-height 0.9)))
-  ;; Using spacious-padding-mode-hook because this package reset
-  ;; mode-line face family
-  (fontaine-set-preset 'regular)
-  (add-hook 'enable-theme-functions #'fontaine-apply-current-preset))
+  (fontaine-set-preset (or (fontaine-restore-latest-preset) 'regular))
+  (add-hook 'enable-theme-functions #'fontaine-mode))
 
 (setup (:require ultra-scroll)
   (setq scroll-conservatively 101
