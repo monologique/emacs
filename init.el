@@ -129,12 +129,14 @@
 ;; - Write documentation for Emacs 30+ using treesitter
 ;; - Eglot
 
-(setup (:require envrc)
-  (:hook envrc-global-mode))
-
 (setup (:require format-all)
   (add-hook 'prog-mode-hook #'format-all-mode))
 
+(setup (:require envrc)
+  (add-hook 'after-init-hook #'envrc-global-mode))
+
+;; (setup (:require direnv)
+;;   (add-hook 'after-init-hook #'direnv-mode))
 ;; ;; C
 ;; (setup
 ;;     (if (treesit-language-available-p 'c)

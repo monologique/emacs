@@ -10,3 +10,4 @@ eshell
 custom.el
 history
 .etc
+.direnv

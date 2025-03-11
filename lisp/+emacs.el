@@ -59,6 +59,7 @@
  kmacro-ring-max 50
  load-prefer-newer noninteractive
  mark-ring-max 50
+ max-lisp-eval-depth 10000
  minibuffer-prompt-properties (list 'read-only t
                                     'cursor-intangible t
                                     'face 'minibuffer-prompt)
