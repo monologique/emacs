@@ -56,12 +56,14 @@
             magit
             marginalia
             modus-themes
+            nix-ts-mode
             no-littering
             orderless
             org-modern
             page-break-lines
             setup
             spacious-padding
+            treesit-grammars.with-all-grammars
             vertico
           ]
         );
@@ -82,6 +84,7 @@
       devShells = forAllSystems systems (pkgs: {
         default = pkgs.mkShell {
           name = "machines";
+          buildInputs = [ self.packages.${pkgs.system}.emacs ];
           packages = with pkgs; [
             nil
             nixfmt-rfc-style

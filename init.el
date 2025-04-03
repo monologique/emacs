@@ -107,3 +107,7 @@
 (setup (:require format-all)
   (add-hook 'prog-mode-hook #'format-all-mode))
 
+;;; Treesitter
+(setup (:require nix-ts-mode)
+  (if (treesit-language-available-p 'nix)
+      (add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-ts-mode))))
