@@ -3,7 +3,7 @@
 ;;; Code:
 
 (require 'early-init (locate-user-emacs-file "early-init.el"))
-(require 'no-littering)
+;;(require 'no-littering)
 
 (setq-default
  apropos-do-all t

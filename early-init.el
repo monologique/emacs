@@ -2,9 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(defvar +emacs--startup-restore-alist nil
-  "Variables and values to restore after init.")
-
 ;; Hide native comp warnings
 (setq native-comp-jit-compilation nil)
 
@@ -46,24 +43,9 @@ See `no-littering' for examples.")
 (when (boundp 'comp-eln-load-path)
   (setcar comp-eln-load-path (exand-file-name (.etc "eln-cache" t))))
 
-;;; Packages
-
 (dolist (pkg '(no-littering
-               exec-path-from-shell
                setup))
   (require pkg))
-
-;;; Use shell path
-
-(dolist (var '("SSH_AUTH_SOCK"
-               "SSH_AGENT_PID"
-               "GPG_AGENT_INFO"
-               "LANG"
-               "LC_TYPE"
-               "NIX_SSL_CERT_FILE"
-               "NIX_PATH"))
-  (add-to-list 'exec-path-from-shell-variables var))
-(exec-path-from-shell-initialize)
 
 (provide 'early-init)
 ;;; early-init.el ends here
