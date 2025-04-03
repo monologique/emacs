@@ -1,5 +1,5 @@
 {
-  description = "Nix configurations for my machines";
+  description = "monologique's emacs configuration";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
