@@ -3,6 +3,7 @@
   fetchpatch,
 }:
 emacs30-pgtk.overrideAttrs (old: {
+  pname = "Emacs";
   patches = (old.patches or [ ]) ++ [
     # Fix OS window role (needed for window managers like yabai)
     (fetchpatch {
