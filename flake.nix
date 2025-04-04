@@ -59,6 +59,7 @@
             nix-ts-mode
             no-littering
             orderless
+            org-fragtog
             org-modern
             page-break-lines
             setup
