@@ -9,19 +9,35 @@
         mac-option-modifier nil))
 
 (setup (:require +frame)
-   (add-hook 'elpaca-after-init-hook #'+frame-center-2/3)
-   (add-hook 'elpaca-after-init-hook #'raise-frame)
-   ;; No title bar on macOS
-   (when (eq system-type 'darwin)
-     (setq ns-use-native-fullscreen t)
-     (add-to-list 'default-frame-alist '(undecorated-round . t)))
+  (add-hook 'elpaca-after-init-hook #'+frame-center-2/3)
+  (add-hook 'elpaca-after-init-hook #'raise-frame)
+  ;; No title bar on macOS
+  (when (eq system-type 'darwin)
+    (setq ns-use-native-fullscreen t)
+    (add-to-list 'default-frame-alist '(undecorated-round . t)))
 
-   ;; Disable toolbars and scrollbars
-   (tool-bar-mode -1)
-   (scroll-bar-mode -1))
+  ;; Disable toolbars and scrollbars
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1))
 
-(setup (:require evil)
-  (evil-mode +1))
+(setup (:require exec-path-from-shell)
+  (dolist (var '("SSH_AUTH_SOCK"
+                 "SSH_AGENT_PID"
+                 "GPG_AGENT_INFO"
+                 "LANG"
+                 "LC_CTYPE"
+                 "XDG_CONFIG_HOME"
+                 "XDG_CONFIG_DIRS"
+                 "XDG_DATA_HOME"
+                 "XDG_DATA_DIRS"
+                 "XDG_CACHE_HOME"))
+    (add-to-list 'exec-path-from-shell-variables var))
+  (exec-path-from-shell-initialize))
+
+(setup (:require meow +meow)
+  (:option meow-cheatsheet-physical-layout meow-cheatsheet-physical-layout-ansi)
+  (+meow-setup)
+  (meow-global-mode))
 
 (setup (:package which-key)
   (:option which-key-max-description-length 40
