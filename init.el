@@ -121,9 +121,20 @@
 ;;; Formating and snippets
 
 (setup (:require format-all)
-  (add-hook 'prog-mode-hook #'format-all-mode))
+  (:hook-into prog-mode))
 
 ;;; Treesitter
-(setup (:require nix-ts-mode)
+(setup treesit
+  (:option treesit-font-lock-level 4))
+
+(setup go-ts-mode
+  (if (treesit-language-available-p 'go)
+      (progn
+        (add-to-list 'auto-mode-alist '("\\.go\\'" . go-ts-mode))
+        (add-to-list 'auto-mode-alist '("go\\.mod\\'" . go-mod-ts-mode)))))
+
+(setup nix-ts-mode
   (if (treesit-language-available-p 'nix)
       (add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-ts-mode))))
+
+;;; Static checking
