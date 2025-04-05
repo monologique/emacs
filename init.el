@@ -97,10 +97,10 @@
 ;;; Buffer and minibuffer
 
 (setup (:require vertico)
-  (vertico-mode +1))
+  (add-hook 'after-init-hook #'vertico-mode))
 
 (setup (:require marginalia)
-  (add-hook 'vertico-mode-hook #'marginalia-mode))
+  (:hook-into vertico-mode))
 
 (setup (:require orderless)
   (setq completion-styles '(orderless basic)
