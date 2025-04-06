@@ -127,6 +127,10 @@
 (setup treesit
   (:option treesit-font-lock-level 4))
 
+(setup lua-ts-mode
+  (if (treesit-language-available-p 'lua)
+      (add-to-list 'auto-mode-alist '("\\.lua\\'" . lua-ts-mode))))
+
 (setup go-ts-mode
   (if (treesit-language-available-p 'go)
       (progn
