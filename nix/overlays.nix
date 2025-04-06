@@ -13,6 +13,10 @@ in
         };
       }
     );
+    
+    neocaml = prev.callPackage ./packages/neocaml.nix {
+      inherit melpaBuild;
+    };
 
     ultra-scroll = prev.callPackage ./packages/ultra-scroll.nix {
       inherit melpaBuild;

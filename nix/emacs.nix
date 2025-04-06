@@ -47,6 +47,7 @@ in
     marginalia
     meow
     modus-themes
+    neocaml
     nix-ts-mode
     no-littering
     orderless
