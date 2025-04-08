@@ -45,6 +45,7 @@ in
     lorem-ipsum
     magit
     marginalia
+    markdown-mode
     meow
     modus-themes
     neocaml
