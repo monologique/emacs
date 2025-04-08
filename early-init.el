@@ -43,8 +43,7 @@ See `no-littering' for examples.")
 (when (boundp 'comp-eln-load-path)
   (setcar comp-eln-load-path (exand-file-name (.etc "eln-cache" t))))
 
-(dolist (pkg '(no-littering
-               setup))
+(dolist (pkg '(no-littering))
   (require pkg))
 
 (provide 'early-init)

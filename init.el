@@ -2,25 +2,26 @@
 ;;; Commentary:
 ;;; Code:
 
-(setup (:require +emacs)
-  (setq mac-option-key-is-meta nil
-        mac-command-key-is-meta t
-        mac-command-modifier 'meta
-        mac-option-modifier nil))
+;;; Default Emacs
 
-(setup (:require +frame)
-  (add-hook 'elpaca-after-init-hook #'+frame-center-2/3)
-  (add-hook 'elpaca-after-init-hook #'raise-frame)
-  ;; No title bar on macOS
-  (when (eq system-type 'darwin)
-    (setq ns-use-native-fullscreen t)
-    (add-to-list 'default-frame-alist '(undecorated-round . t)))
+(require '+emacs)
+(setq mac-option-key-is-meta nil
+      mac-command-key-is-meta t
+      mac-command-modifier 'meta
+      mac-option-modifier nil)
+;;; Frame
 
-  ;; Disable toolbars and scrollbars
-  (tool-bar-mode -1)
-  (scroll-bar-mode -1))
+(require '+frame)
 
-(setup (:require exec-path-from-shell)
+;; No title bar on macOS
+(when (eq system-type 'darwin)
+  (setq ns-use-native-fullscreen t)
+  (add-to-list 'default-frame-alist '(undecorated-round . t)))
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+
+;;; $PATH
+(when (require 'exec-path-from-shell nil t)
   (dolist (var '("SSH_AUTH_SOCK"
                  "SSH_AGENT_PID"
                  "GPG_AGENT_INFO"
@@ -34,40 +35,43 @@
     (add-to-list 'exec-path-from-shell-variables var))
   (exec-path-from-shell-initialize))
 
-(setup (:require meow +meow)
-  (:option meow-cheatsheet-physical-layout meow-cheatsheet-physical-layout-ansi)
+;;; Evil
+(when (require 'meow nil t)
+  (require '+meow)
   (+meow-setup)
-  (meow-global-mode))
+  (meow-global-mode +1)
 
-(setup (:package which-key)
-  (:option which-key-max-description-length 40
-           which-key-sort-order 'which-key-description-order)
+(when (require 'which-key nil t)
+  (setq which-key-max-description-length 40
+        which-key-sort-order 'which-key-description-order)
+
   (add-hook 'after-init-hook #'which-key-mode))
 
-;;; Frame and faces settings
+;;; Faces settings
 
-(setup (:require modus-themes +modus-themes)
+(when (require 'modus-themes nil t)
+  (require '+modus-themes)
   (setq modus-themes-italic-constructs nil
         modus-themes-bold-constructs nil
         modus-themes-custom-auto-reload t)
   (when (eq system-type 'darwin)
     (add-hook 'ns-system-appearance-change-functions #'+modus-themes-toggle)))
 
-(setup (:require spacious-padding)
+(when (require 'spacious-padding nil t)
   (add-hook 'window-setup-hook #'spacious-padding-mode))
 
-(setup (:require fontaine)
+(when (require 'fontaine nil t)
   (setq fontaine-latest-state-file (.etc "fontaine-latest-state-file.eld")
         fontaine-presets
         '((regular
-	   :default-family "Aporetic Sans Mono"
-	   :default-weight normal
-	   :default-height 160
-	   :fixed-pitch-family "Iosevka Fixed SS14"
-	   :fixed-pitch-weight nil
+           :default-family "Aporetic Sans Mono"
+           :default-weight normal
+           :default-height 160
+           :fixed-pitch-family "Iosevka Fixed SS14"
+           :fixed-pitch-weight nil
            :fixed-pitch-height 1.0
-	   :variable-pitch-family "Times New Roman"
-	   :variable-pitch-weight nil
+           :variable-pitch-family "Times New Roman"
+           :variable-pitch-weight nil
            :variable-pitch-height 1.2
            :mode-line-active-family "Helvetica"
            :mode-line-active-width nil
@@ -78,67 +82,75 @@
   (fontaine-set-preset (or (fontaine-restore-latest-preset) 'regular))
   (add-hook 'enable-theme-functions #'fontaine-mode-hook))
 
-(setup (:require ultra-scroll)
+(when (require 'ultra-scroll nil t)
   (setq scroll-conservatively 101
         scroll-margin 0)
   (add-hook 'elpaca-after-init-hook #'ultra-scroll-mode))
 
 ;;; Completions
 
-(setup (:require corfu +corfu)
+(when (require 'corfu nil t)
   (setq tab-always-indent 'complete
 	text-mode-ispell-word-completion nil
 	read-extended-command-predicate #'command-completion-default-include-p)
   (global-corfu-mode))
 
-(setup (:require cape)
+(when (require 'cape nil t)
   (add-hook 'completion-at-point-functions #'cape-dabbrev))
 
 ;;; Buffer and minibuffer
 
-(setup (:require vertico)
+(when (require 'vertico nil t )
   (add-hook 'after-init-hook #'vertico-mode))
 
-(setup (:require marginalia)
-  (:hook-into vertico-mode))
+(when (require 'marginalia nil t)
+  (add-hook 'vertico-mode-hook #'marginalia-mode))
 
-(setup (:require orderless)
+(when (require 'orderless nil t)
   (setq completion-styles '(orderless basic)
         completion-category-defaults nil
 	completion-category-overrides '((file (styles basic)))))
 
-(setup (:require helpful)
-  (:bind "C-h f" #'helpful-callable
-         "C-h v" #'helpful-variable
-         "C-h k" #'helpful-key
-         "C-h x" #'helpful-command))
+(when (require 'helpful nil t)
+  (global-set-key (kbd "C-h f") #'helpful-callable)
+  (global-set-key (kbd "C-h v") #'helpful-variable)
+  (global-set-key (kbd "C-h k") #'helpful-key)
+  (global-set-key (kbd "C-h x") #'helpful-command))
 
 ;;; Note-taking
 
-(setup (:require denote)
+(when (require 'denote nil t)
   (setq denote-directory (expand-file-name "Documents/Notes" (getenv "HOME"))))
 
-;;; Formating and snippets
-
-(setup (:require format-all)
-  (:hook-into prog-mode))
-
 ;;; Treesitter
-(setup treesit
-  (:option treesit-font-lock-level 4))
 
-(setup lua-ts-mode
-  (if (treesit-language-available-p 'lua)
-      (add-to-list 'auto-mode-alist '("\\.lua\\'" . lua-ts-mode))))
+(when (require 'treesit-auto nil t)
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode +1))
 
-(setup go-ts-mode
-  (if (treesit-language-available-p 'go)
-      (progn
-        (add-to-list 'auto-mode-alist '("\\.go\\'" . go-ts-mode))
-        (add-to-list 'auto-mode-alist '("go\\.mod\\'" . go-mod-ts-mode)))))
+;;; Direnv
 
-(setup nix-ts-mode
-  (if (treesit-language-available-p 'nix)
-      (add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-ts-mode))))
+(when (require 'envrc nil t)
+  (global-set-key (kbd "C-c e" #'envrc-command-map))
+  (add-hook 'after-init-hook #'envrc-global-mode))
+
+;;; Formatting
+
+(when (require 'format-all nil t)
+  (add-hook 'bash-ts-mode #'format-all-mode)
+  (add-hook 'emacs-lisp-mode #'format-all-mode)
+  (add-hook 'nix-ts-mode #'format-all-mode))
 
 ;;; Static checking
+
+(when (require 'eglot nil t)
+  (add-to-list 'eglot-server-programs
+               '((neocaml-mode :language-id "ocaml") . ("ocamllsp")))
+
+  (add-hook 'go-ts-mode #'eglot-ensure))
+(add-hook 'neocaml-mode-hook #'eglot-ensure)
+(add-hook 'rust-ts-mode #'eglot-ensure))
+
+(provide 'init)
+
+;;; init.el ends here

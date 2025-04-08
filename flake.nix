@@ -54,8 +54,6 @@
 
       overlays = import ./nix/overlays.nix;
 
-      formatter = forAllSystems (pkgs: pkgs.nixfmt-rfc-style);
-
       devShells = forAllSystems (pkgs: {
         default = pkgs.mkShell {
           name = "machines";
@@ -66,5 +64,7 @@
           ];
         };
       });
+
+      formatter = forAllSystems (pkgs: pkgs.nixfmt-rfc-style);
     };
 }

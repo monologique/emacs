@@ -54,8 +54,8 @@ in
     org-fragtog
     org-modern
     page-break-lines
-    setup
     spacious-padding
+    treesit-auto
     treesit-grammars.with-all-grammars
     ultra-scroll
     vertico
