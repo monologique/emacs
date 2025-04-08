@@ -27,6 +27,7 @@
                  "GPG_AGENT_INFO"
                  "LANG"
                  "LC_CTYPE"
+                 "GOPATH"
                  "XDG_CONFIG_HOME"
                  "XDG_CONFIG_DIRS"
                  "XDG_DATA_HOME"
@@ -39,7 +40,7 @@
 (when (require 'meow nil t)
   (require '+meow)
   (+meow-setup)
-  (meow-global-mode +1)
+  (meow-global-mode +1))
 
 (when (require 'which-key nil t)
   (setq which-key-max-description-length 40
@@ -131,12 +132,17 @@
 ;;; Direnv
 
 (when (require 'envrc nil t)
-  (global-set-key (kbd "C-c e" #'envrc-command-map))
-  (add-hook 'after-init-hook #'envrc-global-mode))
+  (global-set-key (kbd "C-c e") #'envrc-command-map)
+  (envrc-global-mode +1))
 
 ;;; Formatting
 
 (when (require 'format-all nil t)
+  (dolist (mode '(bash-ts-mode
+                  emacs-lisp-mode
+                  nix-ts-mode))
+    (add-hook mode #'format-all-mode))
+
   (add-hook 'bash-ts-mode #'format-all-mode)
   (add-hook 'emacs-lisp-mode #'format-all-mode)
   (add-hook 'nix-ts-mode #'format-all-mode))
@@ -147,9 +153,9 @@
   (add-to-list 'eglot-server-programs
                '((neocaml-mode :language-id "ocaml") . ("ocamllsp")))
 
-  (add-hook 'go-ts-mode #'eglot-ensure))
-(add-hook 'neocaml-mode-hook #'eglot-ensure)
-(add-hook 'rust-ts-mode #'eglot-ensure))
+  (add-hook 'go-ts-mode #'eglot-ensure)
+  (add-hook 'neocaml-mode-hook #'eglot-ensure)
+  (add-hook 'rust-ts-mode #'eglot-ensure))
 
 (provide 'init)
 
