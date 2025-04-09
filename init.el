@@ -68,18 +68,29 @@
            :default-family "Aporetic Sans Mono"
            :default-weight normal
            :default-height 160
+           
            :fixed-pitch-family "Iosevka Fixed SS14"
            :fixed-pitch-weight nil
            :fixed-pitch-height 1.0
-           :variable-pitch-family "Times New Roman"
+
+           :fixed-pitch-serif-family "TeX Gyre Termes"
+
+           
+           :variable-pitch-family "TeX Gyre Termes"
            :variable-pitch-weight nil
-           :variable-pitch-height 1.2
-           :mode-line-active-family "Helvetica"
+           :variable-pitch-height 1.0
+           
+           :mode-line-active-family "TeX Gyre Heros"
            :mode-line-active-width nil
            :mode-line-active-height 0.9
-           :mode-line-inactive-family "Helvetica"
+           :mode-line-inactive-family "TeX Gyre Heros"
            :mode-line-inactive-width nil
-           :mode-line-inactive-height 0.9)))
+           :mode-line-inactive-height 0.9
+           
+           :header-line-family "TeX Gyre Heros"
+           :tab-bar-family "TeX Gyre Heros"
+           :tab-line-family "TeX Gyre Heros"
+           )))
   (fontaine-set-preset (or (fontaine-restore-latest-preset) 'regular))
   (add-hook 'enable-theme-functions #'fontaine-mode-hook))
 
