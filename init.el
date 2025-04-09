@@ -134,11 +134,18 @@
 (when (require 'denote nil t)
   (setq denote-directory (expand-file-name "Documents/Notes" (getenv "HOME"))))
 
-;;; Treesitter
+;;; Syntaxes
 
 (when (require 'treesit-auto nil t)
   (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode +1))
+
+(when (require 'markdown-mode nil t)
+  (setq markdown-live-preview-delete-export 'delete-on
+        markdown-split-window-direction 'right)
+  (add-to-list 'auto-mode-alist
+               '("\\.\\(?:md\\|markdown\\|mkd\\|mdown\\|mkdn\\|mdwn\\)\\'" . markdown-mode))
+  (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode)))
 
 ;;; Direnv
 
