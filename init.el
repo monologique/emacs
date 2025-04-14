@@ -12,7 +12,7 @@
           mac-command-key-is-meta t
           mac-command-modifier 'meta
           mac-option-modifier nil))
-    :config
+  :config
   (require '+emacs)
   (require '+frame)
 
@@ -72,7 +72,7 @@
 
   (when (eq system-type 'darwin)
     (add-hook 'ns-system-appearance-change-functions #'+modus-themes-toggle))
-  
+
   (add-hook 'elpaca-after-init-hook '(lambda () (+modus-themes-toggle 'ns-system-appearance))))
 
 (use-package spacious-padding
@@ -175,14 +175,16 @@
 (use-package magit
   :after transient)
 
-;;; Syntaxes
-
-(use-package treesit-auto
-  :init
-  (setq treesit-auto-install 'prompt)
+;;; Syntax
+;; TODO: Implementating auto-mode-remap for language like lua without
+;; installating lua-mode for example
+(use-package treesit
+  :if (>= emacs-major-version 30)
+  :ensure nil
   :config
-  (treesit-auto-add-to-auto-mode-alist 'all)
-  (global-treesit-auto-mode +1))
+  (require '+treesit)
+  
+  (+treesit-populate-major-mode-remap))
 
 (use-package nix-ts-mode)
 
