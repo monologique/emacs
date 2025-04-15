@@ -30,6 +30,7 @@
  custom-file (.etc "custom.el")
  delete-old-versions t
  desktop-path (list .etc)
+ desktop-dirname (expand-file-name "desktop" .etc)
  desktop-auto-save-timeout 600
  echo-keystrokes 0.1
  ediff-window-setup-function 'ediff-setup-windows-plain
