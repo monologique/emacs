@@ -84,32 +84,26 @@
   (setq fontaine-latest-state-file (.etc "fontaine-latest-state-file.eld")
         fontaine-presets
         '((regular
-           :default-family "Aporetic Sans Mono"
-           :default-weight normal
+           :default-family "Iosevka SS15"
+           :default-weight regular
            :default-height 160
 
-           :fixed-pitch-family "Iosevka Fixed SS14"
-           :fixed-pitch-weight nil
-           :fixed-pitch-height 1.0
+           :fixed-pitch-family "Iosevka SS15"
 
            :fixed-pitch-serif-family "TeX Gyre Termes"
 
            :variable-pitch-family "TeX Gyre Termes"
-           :variable-pitch-weight nil
-           :variable-pitch-height 1.0
 
-           :mode-line-active-family "TeX Gyre Heros"
-           :mode-line-active-width nil
+           :mode-line-active-family "SF Pro"
            :mode-line-active-height 0.9
-           :mode-line-inactive-family "TeX Gyre Heros"
-           :mode-line-inactive-width nil
+           :mode-line-inactive-family "SF Pro"
            :mode-line-inactive-height 0.9
 
-           :header-line-family "TeX Gyre Heros"
-           :tab-bar-family "TeX Gyre Heros"
-           :tab-line-family "TeX Gyre Heros")))
+           :header-line-family "SF Pro"
+           :tab-bar-family "SF Pro"
+           :tab-line-family "SF Pro")))
   (fontaine-set-preset (or (fontaine-restore-latest-preset) 'regular))
-  (add-hook 'enable-theme-functions #'fontaine-mode))
+    (add-hook 'enable-theme-functions #'fontaine-mode))
 
 ;;; Completions
 
