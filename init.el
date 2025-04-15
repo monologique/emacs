@@ -6,24 +6,10 @@
 
 (use-package emacs
   :ensure nil
-  :init
-  (when (eq system-type 'darwin)
-    (setq mac-option-key-is-meta nil
-          mac-command-key-is-meta t
-          mac-command-modifier 'meta
-          mac-option-modifier nil))
   :config
   (require '+emacs)
   (require '+machines)
-  (require '+frame)
-
-  ;; No title bar on macOS
-  (when (eq system-type 'darwin)
-    (setq ns-use-native-fullscreen t)
-    (add-to-list 'default-frame-alist '(undecorated-round . t)))
-
-  (tool-bar-mode -1)
-  (scroll-bar-mode -1))
+  (require '+frame))
 
 (elpaca-wait)
 

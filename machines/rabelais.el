@@ -2,12 +2,19 @@
 ;;; Commentary:
 ;;; Code:
 
+
+;;; Frame
+
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(menu-bar-mode -1)
+
 (defun +machine-fontaine-set-preset ()
   "Sets custom preset for machine."
   (setq fontaine-presets
         '((regular
            :default-family "Iosevka SS15"
-           :default-height 140
+           :default-height 120
            :default-weight regular
 
            :mode-line-active-family "SF Pro"
