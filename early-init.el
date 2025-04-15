@@ -8,7 +8,7 @@
 ;; Disable package.el
 (setq package-enable-at-startup nil)
 
-(push (locate-user-emacs-file "lisp") load-path)
+(add-to-list 'load-path (locate-user-emacs-file "lisp"))
 
 (require 'functions)
 
