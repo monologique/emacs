@@ -14,6 +14,7 @@
           mac-option-modifier nil))
   :config
   (require '+emacs)
+  (require '+machines)
   (require '+frame)
 
   ;; No title bar on macOS
@@ -23,6 +24,8 @@
 
   (tool-bar-mode -1)
   (scroll-bar-mode -1))
+
+(elpaca-wait)
 
 ;;; Shell
 
@@ -80,30 +83,20 @@
   (add-hook 'enable-theme-functions #'spacious-padding-mode))
 
 (use-package fontaine
+  :init
+  (setq fontaine-latest-state-file (.etc "fontaine-latest-state-file.eld"))
+
+  (*machine-if
+   (+machine-fontaine-set-preset)
+
+   (setq fontaine-presets
+         '((regular
+            :default-family "Monospace"
+            :default-height 140
+            :default-weight normal))))
   :config
-  (setq fontaine-latest-state-file (.etc "fontaine-latest-state-file.eld")
-        fontaine-presets
-        '((regular
-           :default-family "Iosevka SS15"
-           :default-weight regular
-           :default-height 160
-
-           :fixed-pitch-family "Iosevka SS15"
-
-           :fixed-pitch-serif-family "TeX Gyre Termes"
-
-           :variable-pitch-family "TeX Gyre Termes"
-
-           :mode-line-active-family "SF Pro"
-           :mode-line-active-height 0.9
-           :mode-line-inactive-family "SF Pro"
-           :mode-line-inactive-height 0.9
-
-           :header-line-family "SF Pro"
-           :tab-bar-family "SF Pro"
-           :tab-line-family "SF Pro")))
   (fontaine-set-preset (or (fontaine-restore-latest-preset) 'regular))
-    (add-hook 'enable-theme-functions #'fontaine-mode))
+  (add-hook 'enable-theme-functions #'fontaine-mode))
 
 ;;; Completions
 
@@ -177,7 +170,7 @@
   :ensure nil
   :config
   (require '+treesit)
-  
+
   (+treesit-populate-major-mode-remap))
 
 (use-package nix-ts-mode)

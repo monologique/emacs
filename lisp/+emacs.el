@@ -4,6 +4,8 @@
 
 (require 'early-init (locate-user-emacs-file "early-init.el"))
 
+;;; Builtins defaults
+
 (setq-default
  apropos-do-all t
  async-shell-command-buffer 'new-buffer
