@@ -32,19 +32,23 @@
 (use-package exec-path-from-shell
   :config
   (when (require 'exec-path-from-shell nil t)
-    (dolist (var '("SSH_AUTH_SOCK"
-                   "SSH_AGENT_PID"
+    (dolist (var '("GOPATH"
                    "GPG_AGENT_INFO"
                    "LANG"
                    "LC_CTYPE"
-                   "GOPATH"
+                   "NIX_PATH"
+                   "NIX_SSL_CERT_FILE"
+                   "SSH_AUTH_SOCK"
+                   "SSH_AGENT_PID"
                    "XDG_CONFIG_HOME"
                    "XDG_CONFIG_DIRS"
                    "XDG_DATA_HOME"
                    "XDG_DATA_DIRS"
                    "XDG_CACHE_HOME"))
       (add-to-list 'exec-path-from-shell-variables var))
-    (exec-path-from-shell-initialize)))
+
+    (when (or (memq window-system '(mac ns x)))
+      (exec-path-from-shell-initialize))))
 
 ;;; Keybinds and movements
 
