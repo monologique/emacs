@@ -7,7 +7,8 @@
     ("nix"    (nix    . ("https://github.com/nix-community/tree-sitter-nix")))
     ("ruby"   (ruby   . ("https://github.com/tree-sitter/tree-sitter-ruby")))
     ("sql"    (sql    . ("https://github.com/DerekStride/tree-sitter-sql" "gh-pages")))
-    ("toml"   (toml   . ("https://github.com/tree-sitter/tree-sitter-toml")))))
+    ("toml"   (toml   . ("https://github.com/tree-sitter/tree-sitter-toml")))
+    ("yaml"   (yaml   . ("https://github.com/tree-sitter-grammars/tree-sitter-yaml")))))
 
 (setq treesit-language-source-alist
       (mapcar (lambda (spec)
