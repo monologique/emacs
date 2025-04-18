@@ -155,9 +155,12 @@
 ;;; Syntax
 ;; TODO: Implementating auto-mode-remap for language like lua without
 ;; installating lua-mode for example
+;; Create a use-package for each language supported
 (use-package treesit
   :if (>= emacs-major-version 30)
   :ensure nil
+  :init
+  (setq treesit-font-lock-level 4)
   :config
   (require '+treesit)
 
