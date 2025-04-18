@@ -33,7 +33,10 @@
                    "XDG_CACHE_HOME"))
       (add-to-list 'exec-path-from-shell-variables var))
 
-    (when (or (memq window-system '(mac ns x)))
+    (when (daemonp)
+      (exec-path-from-shell-initialize))
+
+    (when (display-graphic-p)
       (exec-path-from-shell-initialize))))
 
 ;;; Keybinds and movements
