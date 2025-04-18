@@ -168,6 +168,12 @@
 
 (use-package nix-ts-mode)
 
+(use-package neocaml
+  :ensure (:host github :repo "bbatsov/neocaml")
+  :config
+  (add-hook 'neocaml-mode-hook #'neocaml-repl-minor-mode)
+  (add-to-list 'eglot-server-programs '((neocaml-mode :language-id "ocaml") . ("ocamllsp"))))
+
 ;;; Direnv
 (use-package envrc
   :init
