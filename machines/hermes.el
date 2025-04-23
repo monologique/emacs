@@ -1,4 +1,4 @@
-;;; montaigne.el --- Summary -*- lexical-binding:t -*-
+;;; hermes.el --- Summary -*- lexical-binding:t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -36,5 +36,5 @@
            :mode-line-inactive-family "SF Pro"
            :mode-line-inactive-height 0.9))))
 
-(provide 'montaigne)
-;;; montaigne.el ends here
+(provide 'hermes)
+;;; hermes.el ends here
