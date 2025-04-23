@@ -6,7 +6,7 @@
     ("lua"    (lua    . ("https://github.com/tree-sitter-grammars/tree-sitter-lua")))
     ("nix"    (nix    . ("https://github.com/nix-community/tree-sitter-nix")))
     ("ruby"   (ruby   . ("https://github.com/tree-sitter/tree-sitter-ruby")))
-    ("rust"   (rust   . ("https://github.com/tree-sitter/tree-sitter-rust")))
+    ("rust"   (rust   . ("https://github.com/tree-sitter/tree-sitter-rust" "v0.23.3")))
     ("sql"    (sql    . ("https://github.com/DerekStride/tree-sitter-sql" "gh-pages")))
     ("toml"   (toml   . ("https://github.com/tree-sitter/tree-sitter-toml")))
     ("yaml"   (yaml   . ("https://github.com/tree-sitter-grammars/tree-sitter-yaml")))))
