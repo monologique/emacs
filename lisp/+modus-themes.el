@@ -6,8 +6,8 @@
   "Load the customized version of the modus-operandi."
   (interactive)
   (setq modus-themes-common-palette-overrides
-        modus-themes-preset-overrides-faint)
-  
+        modus-themes-preset-overrides-cooler)
+    
   (load-theme 'modus-operandi t nil))
 
 (defun +modus-themes-load-vivendi ()
