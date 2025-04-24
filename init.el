@@ -258,5 +258,11 @@ using this command."
   :config
   (add-hook 'elpaca-after-init-hook #'ultra-scroll-mode))
 
+(use-package fish-mode
+  :mode ("\\.fish\\'" . fish-mode)
+  :config
+  (with-eval-after-load 'format-all
+    (add-hook 'fish-mode-hook #'format-all-mode)))
+
 (provide 'init)
 ;;; init.el ends here
