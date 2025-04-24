@@ -1,3 +1,7 @@
+;;; +treesit.el --- Summary -*- lexical-binding:t -*-
+;;; Commentary:
+;;; Code:
+
 (defvar +treesit-language-specs
   `(("bash"   (bash   . ("https://github.com/tree-sitter/tree-sitter-bash")))
     ("css"    (css    . ("https://github.com/tree-sitter/tree-sitter-css")))
