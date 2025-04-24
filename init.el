@@ -153,7 +153,9 @@
 (elpaca-wait)
 
 (use-package magit
-  :after transient)
+  :after transient
+  :init
+  (setq magit-define-global-key-bindings 'recommanded))
 
 ;;; Syntax
 ;; TODO: Implementating auto-mode-remap for language like lua without
