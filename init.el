@@ -169,8 +169,6 @@
 
   (+treesit-populate-major-mode-remap))
 
-(use-package nix-ts-mode)
-
 (use-package neocaml
   :ensure (:host github :repo "bbatsov/neocaml")
   :config
@@ -188,8 +186,7 @@
 (use-package format-all
   :config
   (add-hook 'bash-ts-mode #'format-all-mode)
-  (add-hook 'emacs-lisp-mode #'format-all-mode)
-  (add-hook 'nix-ts-mode #'format-all-mode))
+  (add-hook 'emacs-lisp-mode #'format-all-mode))
 
 ;;; Static checking
 
@@ -197,8 +194,7 @@
   :ensure nil
   :config
   (add-to-list 'eglot-server-programs
-               '((neocaml-mode :language-id "ocaml") . ("ocamllsp"))
-               '((nix-ts-mode :language-id "nix") . ("nil")))
+               '((neocaml-mode :language-id "ocaml") . ("ocamllsp")))
 
   (add-hook 'go-ts-mode #'eglot-ensure)
   (add-hook 'neocaml-mode-hook #'eglot-ensure)
