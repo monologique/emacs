@@ -139,13 +139,11 @@
   (setq denote-directory (expand-file-name "Documents/Notes" (getenv "HOME"))))
 
 (use-package markdown-mode
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.\\(?:md\\|markdown\\|mkd\\|mdown\\|mkdn\\|mdwn\\)\\'" . markdown-mode))
   :init
   (setq markdown-live-preview-delete-export 'delete-on
-        markdown-split-window-direction 'right)
-  :config
-  (add-to-list 'auto-mode-alist
-               '("\\.\\(?:md\\|markdown\\|mkd\\|mdown\\|mkdn\\|mdwn\\)\\'" . markdown-mode))
-  (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode)))
+        markdown-split-window-direction 'right))
 
 ;;; VCS
 (use-package transient)
