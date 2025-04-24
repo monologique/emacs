@@ -2,6 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
+(defmacro +treesit-register (lang source)
+  "Register LANG with SOURCE in `treesit-language-source-alist'."
+  `(add-to-list 'treesit-language-source-alist (list ,lang ,@source)))
+
 (defvar +treesit-language-specs
   `(("bash"   (bash   . ("https://github.com/tree-sitter/tree-sitter-bash")))
     ("css"    (css    . ("https://github.com/tree-sitter/tree-sitter-css")))
