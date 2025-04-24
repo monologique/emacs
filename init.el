@@ -182,7 +182,7 @@
   :init
   (global-set-key (kbd "C-c e") #'envrc-command-map)
   :config
-  (envrc-global-mode +1))
+  (add-hook 'elpaca-after-init-hook #'envrc-global-mode))
 
 ;;; Formatting
 (use-package format-all
