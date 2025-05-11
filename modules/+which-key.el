@@ -1,2 +1,1 @@
-(elpaca which-key
-  (require 'which-key))
+(setup (:elpaca which-key))

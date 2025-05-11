@@ -1,5 +1,5 @@
 (setup (:elpaca meow)
-  (:require meow)
+  (:require meow) ; Doesn't load automatically
 
   (with-eval-after-load 'meow
     (meow-define-keys 'normal
