@@ -9,3 +9,4 @@
 (load (mono-modules-directory "+dired"))
 (load (mono-modules-directory "+version-control"))
 (load (mono-modules-directory "+notes"))
+(load (mono-modules-directory "+org"))
