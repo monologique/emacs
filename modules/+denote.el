@@ -1,4 +1,4 @@
-(setup (:elpaca denote)
+(setup (:package denote)
   (require 'denote)
   (setq denote-directory (mono-xdg-docs-home "Notes"))
 

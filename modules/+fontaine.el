@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(setup (:elpaca fontaine)
+(setup (:package fontaine)
   (setq fontaine-latest-state-file (expand-file-name "fontaine-latest-state-file.eld" user-emacs-directory))
 
   (setq fontaine-presets

@@ -1,4 +1,4 @@
-(setup (:elpaca corfu)
+(setup (:package corfu)
   (setq tab-always-indent 'complete
 	text-mode-ispell-word-completion nil
 	read-extended-command-predicate #'command-completion-default-include-p)
@@ -6,20 +6,22 @@
   (corfu-popupinfo-mode)
   (global-corfu-mode 1))
 
-(elpaca-wait)
+; (elpaca-wait)
 
-(setup (:elpaca cape)
+(setup (:package cape)
   (add-hook 'completion-at-point-functions #'cape-dabbrev))
 
 ;;; Buffer and minibuffer
 
-(setup (:elpaca vertico)
-  (add-hook 'elpaca-after-init-hook #'vertico-mode))
+(setup (:package vertico)
+  (:hook-into after-init)
+  (:option vertico-count 8
+	   vertico-reverse-mode nil))
 
-(setup (:elpaca marginalia)
-  (add-hook 'vertico-mode-hook #'marginalia-mode))
+(setup (:package marginalia)
+  (:hook-into vertico-mode))
 
-(setup (:elpaca orderless)
+(setup (:package orderless)
   (setq completion-styles '(orderless basic)
         completion-category-defaults nil
 	completion-category-overrides '((file (styles basic)))))

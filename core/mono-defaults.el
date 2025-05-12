@@ -1,7 +1,11 @@
-;;; mono-defaults.el --- -*- lexical-binding:t -*-
+;;; mono-defaults.el --- monologique core init -*- lexical-binding:t -*-
+;;; Commentary
+;;; Code:
 
-(when (boundp 'comp-eln-load-path)
-  (setcar comp-eln-load-path (mono-etc-directory "eln-cache")))
+;; Native compilation
+(when (if (fboundp 'native-comp-available-p)
+	  (setq native-comp-jit-compilation nil)
+	  (startup-redirect-eln-cache (mono-etc-directory "eln-cache" t))))
 
 (setq-default custom-file (mono-etc-directory "custom.el"))
 
@@ -42,13 +46,26 @@
 
 ;;; --- Packages ---
 
+;; --- `package'
+(when (require 'package nil :noerror)
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+  (setq package-user-dir (mono-etc-directory "elpa" t))
+  (if (not (package-installed-p 'setup))
+    (package-install 'setup))
+  (package-initialize))
+
 ;; `no-littering'
 (setq no-littering-etc-directory mono-etc-directory
       no-littering-var-directory mono-etc-directory)
-(elpaca no-littering (require 'no-littering))
+(setup (:package no-littering))
 
 ;; `savehist'
 (when (require 'savehist nil :noerror)
   (setq-default savehist-file (mono-etc-directory "savehist.el")))
 
+;; `auto-revert'
+(when (require 'savehist nil :noerror)
+  (auto-revert-mode 1))
+
 (provide 'mono-defaults)
+;;; mono-defaults.el ends here

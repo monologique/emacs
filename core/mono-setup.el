@@ -2,8 +2,8 @@
 
 ;;; Code:
 
-(elpaca setup (require 'setup))
-(elpaca-wait)
+; (elpaca setup (require 'setup))
+; (elpaca-wait)
 
 ;;; --- Macros
 
@@ -32,5 +32,14 @@ contains an alist with the key `elpaca'."
   :documentation "Install ORDER with `elpaca'.
 The ORDER can be used to deduce the feature context."
   :shorthand #'cadr)
+
+;; --- Deferred Loading ---
+(setup-define :load-after
+    (lambda (&rest features)
+      (let ((body `(require ',(setup-get 'feature))))
+        (dolist (feature (nreverse features))
+          (setq body `(with-eval-after-load ',feature ,body)))
+        body))
+  :documentation "Load the current feature after FEATURES.")
 
 (provide 'mono-setup)

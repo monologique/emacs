@@ -1,5 +1,4 @@
-(setup (:elpaca transient))
+(setup (:package transient))
 
-(elpaca-wait)
-
-(setup (:elpaca magit))
+(setup (:package magit)
+  (:load-after transient))

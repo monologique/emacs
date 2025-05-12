@@ -1,5 +1,5 @@
 ;;; theme.el --- -*- lexical-binding:t -*-
-(setup (:elpaca modus-themes)
+(setup (:package modus-themes)
   (require 'modus-themes)
 
   (mapc #'disable-theme custom-enabled-themes)
@@ -13,6 +13,4 @@
     (setq modus-themes-common-palette-overrides
           modus-themes-preset-overrides-cooler)
 
-    (modus-themes-load-theme 'modus-operandi)))
-
-(provide 'mono-theme)
+    (modus-themes-load-theme 'modus-vivendi)))

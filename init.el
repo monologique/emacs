@@ -9,11 +9,13 @@
       mac-command-modifier 'meta
       mac-option-modifier nil)
 
-(load (mono-modules-directory "+completion.el"))
-(load (mono-modules-directory "+dired"))
-(load (mono-modules-directory "+version-control"))
-(load (mono-modules-directory "+notes"))
+(load (mono-modules-directory "+fontaine"))
+(load (mono-modules-directory "+modus-themes"))
+(load (mono-modules-directory "+completion"))
+(load (mono-modules-directory "+coding"))
 (load (mono-modules-directory "+org"))
-(load (mono-modules-directory "+evil"))
+(load (mono-modules-directory "+denote"))
+(load (mono-modules-directory "+popper"))
+(load (mono-modules-directory "+version-control"))
 
 (select-frame-set-input-focus (selected-frame))

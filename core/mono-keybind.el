@@ -1,4 +1,4 @@
-;;; mono-treesit.el --- -*- lexical-binding: t -*-
+;;; mono-keybind.el --- -*- lexical-binding: t -*-
 
 (setup treesit
   (:option treesit-font-lock-level 4))

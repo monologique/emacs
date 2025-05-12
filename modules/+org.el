@@ -1,7 +1,7 @@
 (setup org)
 
-(setup (:elpaca org-modern)
+(setup (:package org-modern)
   (add-hook 'org-mode-hook 'org-modern-mode))
 
-(setup (:elpaca olivetti)
+(setup (:package olivetti)
   (add-hook 'org-mode-hook 'olivetti-mode))
