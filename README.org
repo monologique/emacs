@@ -1,0 +1,4 @@
+* Emacs configuration
+
+This is my Emacs configuration I use for note-taking.
+I might adapt it for coding in the future.

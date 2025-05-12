@@ -14,7 +14,7 @@
 (+define-directory mono-modules-directory (locate-user-emacs-file "modules")
   "Directory for all of custom packages formulas.")
 
-(+define-directory mono-xdg-docs-home (expand-file-name "Documents/Notes/" (getenv "HOME"))
+(+define-directory mono-xdg-docs-home (expand-file-name "Documents/" (getenv "HOME"))
   "Directory for all of custom packages formulas.")
 
 (provide 'mono-path)

@@ -37,7 +37,8 @@
 ;; --- Typing ---
 (setq-default file-name-shadow-properties '(invisible t intangible t)
 	      ring-bell-function #'ignore
-	      echo-keystrokes 0.1)
+	      echo-keystrokes 0.1
+	      use-short-answers t)
 
 ;;; --- Packages ---
 
