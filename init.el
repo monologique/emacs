@@ -17,5 +17,9 @@
 (load (mono-modules-directory "+denote"))
 (load (mono-modules-directory "+popper"))
 (load (mono-modules-directory "+version-control"))
+(load (mono-modules-directory "+evil"))
+(load (mono-modules-directory "+ultra-scroll"))
+
 
 (select-frame-set-input-focus (selected-frame))
+;;; init.el ends here
