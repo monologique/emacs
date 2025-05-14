@@ -1,11 +1,4 @@
-;;; mono-setup.el --- -*- lexical-binding: t -*-
-
-;;; Code:
-
-; (elpaca setup (require 'setup))
-; (elpaca-wait)
-
-;;; --- Macros
+;;; +setup.el --- -*- lexical-binding: t -*-
 
 (defun setup-wrap-to-install-package (body _name)
 "Wrap BODY in an `elpaca' block if necessary.
@@ -42,24 +35,5 @@ The ORDER can be used to deduce the feature context."
         body))
   :documentation "Load the current feature after FEATURES.")
 
-(setup-define :package-vc
-  (lambda (package-spec)
-    `(unless (and (package-installed-p ',(if (consp package-spec) 
-					     (car package-spec) 
-					   package-spec))
-		  (package-vc-p (cadr (assoc ',(if (consp package-spec) 
-						   (car package-spec) 
-						 package-spec)
-					     (package--alist)))))
-       (package-vc-install ',package-spec)))
-  :documentation "Install PACKAGE-SPEC using package-vc-install.
-Accepts same arguments as package-vc-install:
-- Either a package name symbol
-- Or a cons cell (PACKAGE-NAME . PLIST) where PList contains :url, :branch etc."
-  :repeatable t
-  :shorthand (lambda (sexp) 
-	       (if (consp (cadr sexp)) 
-		   (caadr sexp) 
-		 (cadr sexp))))
-
-(provide 'mono-setup)
+(provide '+setup)
+;;; +setup.el ends here

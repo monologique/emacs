@@ -1,7 +1,6 @@
-;;; mono-lib.el --- -*- lexical-binding:t -*-
+;;; +lib.el --- -*- lexical-binding:t -*-
 
 ;;; Code:
-
 (defmacro +define-directory (name directory &optional docstring inhibit-mkdir)
   "Define a variable and function NAME expanding to DIRECTORY.
 DOCSTRING is applied to the variable.  Ensure DIRECTORY exists in
@@ -24,4 +23,5 @@ the filesystem, unless INHIBIT-MKDIR is non-nil."
            (make-directory (file-name-directory file-name) :parents))
          file-name))))
 
-(provide 'mono-lib)
+(provide '+lib)
+;;; +lib.el ends here
