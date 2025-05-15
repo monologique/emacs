@@ -1,6 +1,6 @@
 ;; * CONSTANTS
 
-(defconst IS-MAC (eq system-type 'darwin))
+(defconst IS-DARWIN (eq system-type 'darwin))
 (defconst IS-LINUX (eq system-type 'gnu/linux))
 
 (+define-directory CACHE-DIRECTORY (locate-user-emacs-file ".etc")
@@ -27,10 +27,10 @@
 
 ;; * MACHINES
 
-(unless IS-MAC (setq command-line-ns-option-alist nil))
+(unless IS-DARWIN (setq command-line-ns-option-alist nil))
 (unless IS-LINUX (setq command-line-x-option-alist nil))
 
-(if IS-MAC
+(if IS-DARWIN
     (setq mac-option-key-is-meta nil
 	  mac-command-key-is-meta t
 	  mac-command-modifier 'meta
