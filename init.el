@@ -17,6 +17,11 @@
 (require '+defaults)
 (require '+package)
 
+(elpaca no-littering
+  (setq no-littering-etc-directory CACHE-DIRECTORY
+	no-littering-var-directory CACHE-DIRECTORY)
+  (require 'no-littering))
+
 ;; * PACKAGES
 
 
