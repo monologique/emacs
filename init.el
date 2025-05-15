@@ -63,7 +63,7 @@
 (setup (:elpaca activities))
 (setup (:elpaca popper))
 
-;; ** Completion
+;; ** Completion, infos and help
 
 (setup (:elpaca corfu)
   (setq tab-always-indent 'complete
@@ -76,6 +76,12 @@
 (setup (:elpaca cape)
   (:load-after corfu)
   (add-hook 'completion-at-point-functions #'cape-dabbrev))
+
+(setup (:elpaca helpful)
+  (:global (kbd "C-h f") #'helpful-callable
+	   (kbd "C-h v") #'helpful-variable
+	   (kbd "C-h k") #'helpful-key
+	   (kbd "C-h x") #'helpful-command))
 
 ;; ** Version control
 (setup (:elpaca transient))
