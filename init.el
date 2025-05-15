@@ -24,7 +24,6 @@
 
 ;; * PACKAGES
 
-
 ;; Theming
 (setup (:elpaca modus-themes)
   (:require modus-themes +modus-themes)
@@ -97,6 +96,11 @@
 
 
 ;; ** QoL
-
-
+(setup (:elpaca ultra-scroll
+	 :host github
+	 :repo "jdtsmith/ultra-scroll"
+	 :branch "main")
+    (:option scroll-conservatively 101
+             scroll-margin 0)
+    (:hook-into emacs-startup-hook))
 ;;; init.el ends here
