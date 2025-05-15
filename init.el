@@ -28,9 +28,8 @@
 ;; Theming
 (setup (:elpaca modus-themes)
   (:require modus-themes +modus-themes)
-  
-  (+modus-themes-apply-customization)
-  (modus-themes-load-theme 'modus-operandi))
+  (when (boundp 'ns-system-appearance-change-functions)
+    (add-hook 'ns-system-appearance-change-functions #'+modus-themes-load-auto)))
 
 ;; ** Modal editing and movement
 
