@@ -7,6 +7,7 @@
   "Directory for all of Emacs' various files.")
 
 ;; * DEFAULTS
+
 (setq-default auto-save-interval 30
 	      auto-save-list-file-prefix (expand-file-name "auto-saves/saves-" CACHE-DIRECTORY)
 	      auto-save-timeout 30
@@ -22,8 +23,12 @@
 	      kept-new-versions 6
 	      kept-old-versions 2
 	      recenter-positions '(top middle bottom)
+	      ring-bell-function 'ignore
 	      user-full-name "Paul-Mathias Logue"
 	      user-mail-address "pml@monologique.me")
+
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
 
 ;; * MACHINES
 
@@ -31,7 +36,8 @@
 (unless IS-LINUX (setq command-line-x-option-alist nil))
 
 (if IS-DARWIN
-    (setq mac-option-key-is-meta nil
+    (setq ns-use-proxy-icon nil
+	  mac-option-key-is-meta nil
 	  mac-command-key-is-meta t
 	  mac-command-modifier 'meta
 	  mac-option-modifier nil))

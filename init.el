@@ -25,23 +25,16 @@
 ;; * PACKAGES
 
 ;; Theming
+
 (setup (:elpaca modus-themes)
   (:require modus-themes +modus-themes)
   (when (boundp 'ns-system-appearance-change-functions)
     (add-hook 'ns-system-appearance-change-functions #'+modus-themes-load-auto)))
 
-;; ** Modal editing and movement
-
-(setup (:elpaca meow)
-  (:require meow +meow)
-  (meow-global-mode 1))
-
-;; ** Font face
-
 (setup (:elpaca fontaine)
   (setq fontaine-latest-state-file
-	(expand-file-name "fontaine-latest-state-file.eld" user-emacs-directory))
-  (setq fontaine-presets
+	(expand-file-name "fontaine-latest-state-file.eld" user-emacs-directory)
+	fontaine-presets
         '((regular
            :default-family "Iosevka SS15"
            :default-height 160
@@ -52,9 +45,18 @@
 
            :mode-line-inactive-family "sans"
            :mode-line-inactive-height 0.9)))
-  
+
   (fontaine-set-preset (or (fontaine-restore-latest-preset) 'regular))
   (add-hook 'enable-theme-functions #'fontaine-mode))
+
+(setup (:elpaca spacious-padding)
+  (:hook-into emacs-startup-hook))
+
+;; ** Modal editing and movement
+
+(setup (:elpaca meow)
+  (:require meow +meow)
+  (meow-global-mode 1))
 
 ;; ** Buffer and window management
 
@@ -74,6 +76,16 @@
 (setup (:elpaca cape)
   (:load-after corfu)
   (add-hook 'completion-at-point-functions #'cape-dabbrev))
+
+(setup (:elpaca vertico)
+  (:option vertico-count 8)
+  (:hook-into emacs-startup-hook))
+
+(setup (:elpaca marginalia)
+  (:load-after vertico)
+  (:hook-into vertico-mode-hook))
+
+(setup (:elpaca consult))
 
 (setup (:elpaca helpful)
   (:global (kbd "C-h f") #'helpful-callable

@@ -35,23 +35,11 @@
 
 ;; * FRAME SETTINGS
 
-(setq default-frame-alist
-      (append (list
-               '(min-width  . 1)
-               '(min-height . 1)
-	       '(width  . 202)
-	       '(height . 48)
-               '(vertical-scroll-bars . nil)
-               '(internal-border-width . 24)
-               '(left-fringe . 0)
-               '(right-fringe . 0)
-               '(undecorated-round . t)
-               '(scroll-bar-mode . -1)
-               '(tool-bar-lines . 0)
-               '(menu-bar-lines . 0)))
-      indicate-empty-lines nil
+(setq indicate-empty-lines nil
       frame-inhibit-implied-resize t
       frame-resize-pixelwise t
+      frame-title-format nil
       window-resize-pixelwise t)
+(add-to-list 'default-frame-alist '(undecorated-round . t))
 
 (add-to-list 'load-path (expand-file-name "lisp/" user-emacs-directory))
