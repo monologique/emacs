@@ -24,6 +24,7 @@
 	      kept-old-versions 2
 	      recenter-positions '(top middle bottom)
 	      ring-bell-function 'ignore
+	      use-short-answers t
 	      user-full-name "Paul-Mathias Logue"
 	      user-mail-address "pml@monologique.me")
 
@@ -43,11 +44,6 @@
 	  mac-option-modifier nil))
 
 ;; * MODES
-
-(when (require 'display-line-numbers nil :noerror)
-  (setq display-line-numbers-type 'relative
-	display-line-numbers-current-absolute nil)
-  (add-hook 'prog-mode-hook 'display-line-numbers-mode))
 
 (when (fboundp 'window-divider-mode)
   (setq-default window-divider-default-places 'right-only

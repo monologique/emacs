@@ -4,3 +4,9 @@ eln-cachepersist/
 tree-sitter
 projects
 eln-cache/
+.envrc
+.pre-commit-config.yaml
+.direnv/
+_build
+result/
+/result

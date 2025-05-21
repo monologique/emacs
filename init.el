@@ -9,6 +9,7 @@
             (lambda ()
               (let ((elapsed (float-time (time-subtract (current-time) emacs-start-time))))
                 (message "[Emacs initialized in %.3fs]" elapsed)))))
+
 (add-hook 'emacs-startup-hook (lambda () (select-frame-set-input-focus (selected-frame))))
 
 ;; * CORE
@@ -38,7 +39,7 @@
         '((regular
            :default-family "Iosevka SS15"
            :default-height 160
-           :default-weight regular
+           :default-weight light
 
            :mode-line-active-family "sans"
            :mode-line-active-height 0.9
@@ -51,6 +52,12 @@
 
 (setup (:elpaca spacious-padding)
   (:hook-into emacs-startup-hook))
+
+(setup (:elpaca olivetti)
+  (:face olivetti-fringe ((t (:background nil :foreground nil))))
+  (:hook-into org-mode
+	      text-mode))
+
 
 ;; ** Modal editing and movement
 
@@ -98,14 +105,18 @@
 (setup (:elpaca magit)
   (:load-after transient))
 
-;; ** Note-taking
+;; * NOTE-TAKING
 
-(setup (:elpaca olivetti)
-  (:hook-into org-mode
-	      text-mode))
+(setup text-mode
+  (:option sentence-end-double-space nil)
+  (:hook visual-line-mode))
+
+(setup (:elpaca nix-ts-mode)
+  (:file-match "*.nix"))
 
 ;; ** Org
 
+;; ** Latex
 
 ;; ** QoL
 (setup (:elpaca ultra-scroll
@@ -115,4 +126,35 @@
     (:option scroll-conservatively 101
              scroll-margin 0)
     (:hook-into emacs-startup-hook))
+
+(setup (:require org-modern))
+
+(setup (:package citar)
+  (:require citar))
+
+(setup (:elpaca markdown-mode))
+
+(defun nix-prefetch-github-to-derivation ()
+  "Interactively query GitHub repository and generate Nix derivation."
+  (interactive)
+  (let* ((author (read-string "GitHub author: "))
+         (repo (read-string "Repository name: "))
+         (rev (read-string "Revision (optional): " nil nil ""))
+         (command (concat "nix-prefetch-github "
+                          author " " repo
+                          (unless (string-empty-p rev) 
+                            (concat " --rev " rev))))
+         (json-output (shell-command-to-string command))
+         (json-data (json-read-from-string json-output)))
+    
+    (insert (format "fetchFromGitHub {
+    owner = \"%s\";
+    repo = \"%s\";
+    rev = \"%s\";
+    hash = \"%s\";
+  };" 
+                    (alist-get 'owner json-data)
+                    (alist-get 'repo json-data)
+                    (alist-get 'rev json-data)
+                    (alist-get 'hash json-data)))))
 ;;; init.el ends here

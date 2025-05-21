@@ -1,3 +1,4 @@
 * Emacs configuration
 
 This is my Emacs configuration I use for note-taking and coding.
+I'm using Nix + SetupEl for configuring my build.
