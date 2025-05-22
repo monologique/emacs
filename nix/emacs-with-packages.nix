@@ -149,6 +149,18 @@
       };
     }))
 
+    (melpaBuild rec {
+      pname = "neocaml";
+      version = "0.1.0";
+
+      src = fetchFromGitHub {
+        owner = "bbatsov";
+        repo = "neocaml";
+        rev = "930e4aa9ad50977eefe296f35d0c5c1e6e112398";
+        hash = "sha256-EQEe+HZY/3D1e3AUmy+FIO1KAZorvFvt1Bg7B7YVxDw=";
+      };
+    })
+
     (nix-ts-mode.override (old: {
       melpaBuild = old.melpaBuild // {
         src = fetchFromGitHub {

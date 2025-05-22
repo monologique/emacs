@@ -121,6 +121,10 @@
 (setup (:require nix-ts-mode +nix)
   (:file-match "*.nix"))
 
+(setup (:require neocaml)
+  (:file-match "*.ml"
+	       "*.mli"))
+
 ;; ** QoL
 
 (setup (:require ultra-scroll)
