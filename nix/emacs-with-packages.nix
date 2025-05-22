@@ -105,13 +105,13 @@
       };
     }))
 
-    (lsp-mode.override (old: {
+    (lsp-bridge.override (old: {
       melpaBuild = old.melpaBuild // {
         src = fetchFromGitHub {
-          owner = "emacs-lsp";
-          repo = "lsp-mode";
-          rev = "09f16c7d7e349c9161cd37816505d62f3d5c07e7";
-          hash = "sha256-SNyWS10zb+JKxJ7i3Axo9NgYnbQl/1NkLR9DDQREiyM=";
+          owner = "manateelazycat";
+          repo = "lsp-bridge";
+          rev = "25dc660bffd598850f325abab5fd10db0e57faa8";
+          hash = "sha256-Fh3KrNF7ki7h+bTRI2MaUsjrenIRCTLQmoq853fHqDk=";
         };
       };
     }))

@@ -123,9 +123,8 @@
 ;; ** Languages
 (setup (:require yasnippet))
 
-(setup (:require lsp-mode yasnippet)
-  (:option lsp-keymap-prefix "C-c l")
-  (add-hook 'nix-ts-mode #'lsp-deferred))
+(setup (:require lsp-bridge)
+  (global-lsp-bridge-mode))
 
 (setup (:require markdown-mode))
 
