@@ -54,7 +54,7 @@
   (:hook-into emacs-startup-hook))
 
 (setup (:require olivetti)
-  (:face olivetti-fringe ((t (:background nil :foreground nil))))
+  (:face olivetti-fringe ((t (:background unspecified :foreground unspecified))))
   (:hook-into org-mode
 	      text-mode))
 
