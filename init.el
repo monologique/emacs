@@ -92,6 +92,10 @@
 
 (setup (:require consult))
 
+(setup (:require orderless)
+  (:option completion-styles '(orderless basic)
+	   completion-category-overrides '((file (styles basic partial-completion)))))
+
 (setup (:require helpful)
   (:global (kbd "C-h f") #'helpful-callable
 	   (kbd "C-h v") #'helpful-variable

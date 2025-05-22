@@ -216,6 +216,17 @@
       };
     }))
 
+    (orderless.override (old: {
+      elpaBuild = old.elpaBuild // {
+        src = fetchFromGitHub {
+          owner = "oantolin";
+          repo = "orderless";
+          rev = "254f2412489bbbf62700f9d3d5f18e537841dcc3";
+          hash = "sha256-iGpDDteSXzaWC++RTX4lhLVs1OlbWU4gAMYKMaYLSdE=";
+        };
+      };
+    }))
+
     (org-modern.override (old: {
       elpaBuild = old.elpaBuild // {
         src = fetchFromGitHub {
