@@ -113,8 +113,15 @@
 
 (setup (:require citar))
 
+(setup (:require envrc)
+  (envrc-global-mode 1))
 
 ;; ** Languages
+(setup (:require yasnippet))
+
+(setup (:require lsp-mode yasnippet)
+  (:option lsp-keymap-prefix "C-c l")
+  (add-hook 'nix-ts-mode #'lsp-deferred))
 
 (setup (:require markdown-mode))
 

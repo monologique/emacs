@@ -72,6 +72,17 @@
       };
     }))
 
+    (envrc.override (old: {
+      elpaBuild = old.elpaBuild // {
+        src = fetchFromGitHub {
+          owner = "purcell";
+          repo = "envrc";
+          rev = "4ca2166ac72e756d314fc2348ce1c93d807c1a14";
+          hash = "sha256-1PvINLJJqKOqJnxQ6zFsJCZw62IMqvBn9C2sthu1INA=";
+        };
+      };
+    }))
+
     (helpful.override (old: {
       melpaBuild = old.melpaBuild // {
         src = fetchFromGitHub {
@@ -94,13 +105,13 @@
       };
     }))
 
-    (marginalia.override (old: {
-      elpaBuild = old.elpaBuild // {
+    (lsp-mode.override (old: {
+      melpaBuild = old.melpaBuild // {
         src = fetchFromGitHub {
-          owner = "minad";
-          repo = "marginalia";
-          rev = "3cfba58cd56bdf5c12609a8bfc89fb97f3df37b0";
-          hash = "sha256-XoW3jWr8WOacVMllu7qVmGj5jR41GMdth6vI7UTosrg=";
+          owner = "emacs-lsp";
+          repo = "lsp-mode";
+          rev = "09f16c7d7e349c9161cd37816505d62f3d5c07e7";
+          hash = "sha256-SNyWS10zb+JKxJ7i3Axo9NgYnbQl/1NkLR9DDQREiyM=";
         };
       };
     }))
@@ -112,6 +123,17 @@
           repo = "magit";
           rev = "04ee83d93fabbfbe202e9e7dc781b0dcd4d5b502";
           hash = "sha256-OYBNAV6xiPQHxg2ACrjYSIkF2xwbyTwDZhX9NCqJEjw=";
+        };
+      };
+    }))
+
+    (marginalia.override (old: {
+      elpaBuild = old.elpaBuild // {
+        src = fetchFromGitHub {
+          owner = "minad";
+          repo = "marginalia";
+          rev = "3cfba58cd56bdf5c12609a8bfc89fb97f3df37b0";
+          hash = "sha256-XoW3jWr8WOacVMllu7qVmGj5jR41GMdth6vI7UTosrg=";
         };
       };
     }))
@@ -272,5 +294,17 @@
         };
       };
     }))
+
+    (yasnippet.override (old: {
+      elpaBuild = old.elpaBuild // {
+        src = fetchFromGitHub {
+          owner = "joaotavora";
+          repo = "yasnippet";
+          rev = "2384fe1655c60e803521ba59a34c0a7e48a25d06";
+          hash = "sha256-MIx9gqUv8GQ41kOYUah+Yuf2uC/YwWbh5rnlH4XZEYU=";
+        };
+      };
+    }))
+
   ]
 )

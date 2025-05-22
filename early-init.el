@@ -42,4 +42,8 @@
       window-resize-pixelwise t)
 (add-to-list 'default-frame-alist '(undecorated-round . t))
 
+;; * LSP
+(when (package-installed-p 'lsp-mode)
+  (setenv "LSP_USE_PLISTS" "true"))
+
 (add-to-list 'load-path (expand-file-name "lisp/" user-emacs-directory))
