@@ -6,6 +6,9 @@
 (+define-directory CACHE-DIRECTORY (locate-user-emacs-file ".etc")
   "Directory for all of Emacs' various files.")
 
+(+define-directory DOCS-DIRECTORY (expand-file-name "Documents" (getenv "HOME"))
+  "Document directory of the logged user.")
+
 ;; * DEFAULTS
 
 (setq-default auto-save-interval 30
